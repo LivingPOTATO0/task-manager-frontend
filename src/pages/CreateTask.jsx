@@ -17,8 +17,8 @@ const CreateTask = () => {
             const response = await taskService.createTask(inputText);
             if (response.status === 'OK' && response.data?.id) {
                 navigate(`/tasks/${response.data.id}`);
-            } else if (response.status === 'OK') {
-                navigate('/dashboard');
+            } else {
+                setError('Failed to create task: no ID returned');
             }
         } catch (err) {
             setError(err.response?.data?.message || 'Failed to create task');

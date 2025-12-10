@@ -18,7 +18,9 @@ const TaskView = () => {
     const workerRef = useRef(null);
 
     useEffect(() => {
-        fetchTask();
+        if (id) {
+            fetchTask();
+        }
     }, [id]);
 
     useEffect(() => {

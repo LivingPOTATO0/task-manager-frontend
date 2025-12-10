@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { showError } from '../components/ErrorToast';
 
 // Module-level variable to store access token (in memory only)
 let accessToken = '';
@@ -67,8 +68,15 @@ axiosClient.interceptors.response.use(
                 // Refresh failed, clear token and dispatch logout event
                 setAccessToken('');
                 window.dispatchEvent(new Event('logout'));
+                showError('Session expired. Please login again.');
                 return Promise.reject(refreshError);
             }
+        }
+
+        // Show error toast for non-401 errors
+        if (error.response?.status !== 401) {
+            const errorMessage = error.response?.data?.message || error.message || 'An error occurred';
+            showError(errorMessage);
         }
 
         return Promise.reject(error);

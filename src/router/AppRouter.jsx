@@ -8,6 +8,7 @@ import Register from '../pages/Register';
 import Dashboard from '../pages/Dashboard';
 import CreateTask from '../pages/CreateTask';
 import TaskView from '../pages/TaskView';
+import Debug from '../pages/Debug';
 
 const AppRouter = () => {
     return (
@@ -15,6 +16,7 @@ const AppRouter = () => {
             {/* Public Routes */}
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/debug" element={<Debug />} />
 
             {/* Protected Routes */}
             <Route
